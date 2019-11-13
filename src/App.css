@@ -1,22 +1,39 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: "norwester";
+  /*src: url('webfont.eot');  IE9 Compat Modes */
+  src: url("./fonts/norwester-v1.2/webfonts/norwester.woff");
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
-}
+a {
+	text-decoration: none;
+	color: black;
+  }
+  
+  .logout-btn {
+	text-decoration: underline;
+  }
+  .login-btn {
+	display: inline;
+  }
+  .login-btn:hover {
+	text-decoration: underline;
+  }
+  
+  .nav-logo {
+	font-family: "norwester";
+	font-size: 2rem;
+	padding-top: -80px;
+	position: relative;
+	top: -20px;
+  }
+  
+  .quotation {
+	/* margin-top: 70px; */
+	font-size: 30px;
+	margin: 0 auto;
+	quotes: "\201C""\201D""\2018""\2019";
+	padding: 10px 20px;
+	line-height: 1.4;
+	max-width: 800px;
+  }
+  
