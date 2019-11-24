@@ -20,7 +20,9 @@ export default function CreateQuestionDialog(props) {
 				props.addQuestion(res.data);
 				closeDialog();
 			})
-			.catch()
+			.catch(err => {
+				console.log(err)
+			})
 	}
 	return (
 		<>
