@@ -40,6 +40,14 @@ export default function MainLayout() {
 		setLoginInfo({ loggedIn: false, username: '' });
 	}
 
+	if(loginInfo.loggedIn && window.location.pathname==='/'){
+		if(loginInfo.type==='admin'){
+			window.history.pushState("object or string", "Title", "/admin/");
+		}else{
+			window.history.pushState("object or string", "Title", "/user/");
+		}
+	}
+
 	return (
 		<>
 			<ThemeProvider theme={theme}>
@@ -51,8 +59,8 @@ export default function MainLayout() {
 								<Navbar loginInfo={loginInfo} onLogout={onLogout} />
 								{/* <Route path='/' exact render={(props) => <HomeScreen loginInfo={loginInfo} {...props} />} /> */}
 								{loginInfo.type === 'admin' ?
-									// <Route path='/admin' render={(props) => <AdminMainLayout loginInfo={loginInfo} {...props} />} />
-									<AdminMainLayout loginInfo={loginInfo} />
+									<Route path='/admin' render={(props) => <AdminMainLayout loginInfo={loginInfo} {...props} />} />
+									// <AdminMainLayout loginInfo={loginInfo} />
 									:
 									<Route path='' />
 
