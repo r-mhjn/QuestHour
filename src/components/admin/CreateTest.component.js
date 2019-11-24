@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Paper, Typography, Checkbox } from '@material-ui/core'
-import Axios from '../axiosConfig'
+import Axios from '../../axiosConfig'
 
 export default function CreateTest() {
 	const [questionsArray, setQuestionsArray] = useState([])

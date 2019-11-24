@@ -62,6 +62,11 @@ export default function Login(props) {
 		Axios.post('/admin/login', { username, password })
 			.then(res => {
 				console.log(res.data)
+				localStorage.loginInfo = JSON.stringify({
+					loggedIn: true,
+					username: username,
+					type: 'admin',
+				});
 				props.setLoginInfo({
 					loggedIn: true,
 					username: username,
@@ -92,7 +97,7 @@ export default function Login(props) {
 						required
 						fullWidth
 						id="email"
-						label="Email Address"
+						label="Username"
 						name="email"
 						autoComplete="email"
 						autoFocus

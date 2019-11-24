@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import Container from '@material-ui/core/Container'
 import Navbar from './Navbar.component'
-import HomeScreen from './HomeScreen.component'
-import AdminLogin from './Login.component'
+// import HomeScreen from './HomeScreen.component'
+import LoggedOutPage from './LoggedOutPage.component'
+
+import AdminMainLayout from './admin/AdminMainLayout.component'
+
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import CreateTest from './CreateTest.component';
-// import SearchResults from './SearchResults.component';
+import Login from './Login.component'
 
 const theme = createMuiTheme({
 	palette: {
@@ -22,15 +24,19 @@ const theme = createMuiTheme({
 
 export default function MainLayout() {
 	let localLoginInfo = {}
-	if (localStorage.loginInfo) {
-		localLoginInfo = { ...JSON.parse(localStorage.loginInfo) }
-	} else {
+	try {
+		localLoginInfo = JSON.parse(localStorage.loginInfo)
+		console.log('found login info on local')
+	} catch (error) {
 		localLoginInfo = { loggedIn: false }
 	}
+	console.log(localStorage)
+
 	console.log(localLoginInfo)
 	const [loginInfo, setLoginInfo] = useState(localLoginInfo);
 	// const { loggedIn, username } = JSON.parse(localStorage.loginInfo);
-	const logout = () => {
+	const onLogout = () => {
+		localStorage.loginInfo = JSON.stringify({ loggedIn: false });
 		setLoginInfo({ loggedIn: false, username: '' });
 	}
 
@@ -40,14 +46,25 @@ export default function MainLayout() {
 
 				<Container maxWidth='lg'>
 					<div style={{ paddingTop: 60 }} >
-						{loginInfo.loggedIn ? <Router>
-							<Navbar loginInfo={loginInfo} logout={logout} />
-							<Route path='/' exact render={(props) => <HomeScreen loginInfo={loginInfo} {...props} />} />
-							<Route path='/admin/createTest' render={(props) => <CreateTest loginInfo={loginInfo} {...props} />} />
-							{/* <Route path='/products' component={SearchResults} /> 
-							<Route path='/transactions' exact component={HomeScreen} />
-							<Route path='/cart' exact component={HomeScreen} /> */}
-						</Router> : <AdminLogin setLoginInfo={setLoginInfo} />}
+						{loginInfo.loggedIn ?
+							<Router>
+								<Navbar loginInfo={loginInfo} onLogout={onLogout} />
+								{/* <Route path='/' exact render={(props) => <HomeScreen loginInfo={loginInfo} {...props} />} /> */}
+								{loginInfo.type === 'admin' ?
+									// <Route path='/admin' render={(props) => <AdminMainLayout loginInfo={loginInfo} {...props} />} />
+									<AdminMainLayout loginInfo={loginInfo} />
+									:
+									<Route path='' />
+
+								}
+								{/* <Route path='/admin/createTest' render={(props) => <CreateTest loginInfo={loginInfo} {...props} />} /> */}
+							</Router>
+							:
+							<Router>
+								<Route path='/' exact component={LoggedOutPage} />
+								<Route path='/admin' render={(props) => <Login loginType='admin' setLoginInfo={setLoginInfo} {...props} />} />
+							</Router>
+						}
 					</div>
 				</Container>
 			</ThemeProvider>

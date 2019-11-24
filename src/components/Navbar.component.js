@@ -15,7 +15,7 @@ export default function Navbar(props) {
 				<Typography style={{ display: 'inline' }} variant='h5'> Welcome, {props.loginInfo.loggedIn ? props.loginInfo.username + ' ' : ''}</Typography>
 				{
 					!props.loginInfo.loggedIn ? <Link to='login' className='login-btn' ><Typography style={{ display: 'inline' }} variant='h5'>Login</Typography></Link> :
-						<Link to='/' className='logout-btn' ><Typography style={{ display: 'inline' }} variant='h5'>Logout</Typography></Link>
+						<Link to='/' className='logout-btn' ><Typography style={{ display: 'inline' }} onClick={()=>{props.onLogout()}} variant='h5'>Logout</Typography></Link>
 				}
 			</div>
 		</div>
