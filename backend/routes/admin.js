@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('./adminAuth/strategy');
 
 const questionsRouter = require('./admin_routes/question');
+const testsRouter = require('./admin_routes/test');
 // const passengersRouter = require('./admin_routes/passenger');
 // const driversRouter = require('./admin_routes/driver');
 // const busesRouter = require('./admin_routes/bus');
@@ -57,6 +58,7 @@ router.route('/logout').get(passport.authenticate('jwt', { session: false }), (r
 });
 
 router.use('/questions', passport.authenticate('jwt', { session: false }), questionsRouter);
+router.use('/tests', passport.authenticate('jwt', { session: false }), testsRouter);
 // router.use('/passengers', passport.authenticate('jwt', { session: false }), passengersRouter);
 // router.use('/drivers', passport.authenticate('jwt', { session: false }), driversRouter);
 // router.use('/buses', passport.authenticate('jwt', { session: false }), busesRouter);
