@@ -2,7 +2,7 @@ var passport = require('passport');
 const LocalStrategy = require('passport-local');
 const passportJWT = require('passport-jwt');
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const Admin = require('../../database/models/admin.model');
+const Admin = require('../../models/admin.model');
 // const bcrypt = require('bcrypt');
 
 function adminLogin(username, password, done) {

@@ -11,7 +11,7 @@ require('dotenv').config();
 const port = process.env.PORT | 5000;
 var uri = process.env.ATLAS_URI;
 
-mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true, });
 const connection = mongoose.connection;
 connection.once('open', () => {
 	console.error('connected to mongodb database successfully');

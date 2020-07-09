@@ -1,6 +1,6 @@
 var router = require('express').Router();
 // const Question = require('../../database/models/question.model');
-const Test = require('../../database/models/test.model');
+const Test = require('../../models/test.model');
 
 //do pagination
 router.route('/').get((req, res) => {

@@ -1,5 +1,5 @@
 var router = require('express').Router();
-const Question = require('../../database/models/question.model');
+const Question = require('../../models/question.model');
 
 //do pagination
 router.route('/').get((req, res) => {
