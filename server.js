@@ -27,7 +27,9 @@ app.use(express.json());
 app.use(passport.initialize());
 
 const userRouter = require('./routes/admin');
+const routes = require('./routes');
 app.use('/admin', userRouter);
+app.use('/lol', routes);
 
 app.listen(port, () => {
 	console.log(`server started on port ${port}`);
