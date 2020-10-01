@@ -4,8 +4,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-
 var app = express();
+const helmet = require("helmet");
+app.use(helmet());
+
 
 require('dotenv').config();
 const port = process.env.PORT | 5000;
