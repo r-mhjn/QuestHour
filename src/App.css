@@ -36,4 +36,19 @@ a {
 	line-height: 1.4;
 	max-width: 800px;
   }
+.bottom-page {
+	font-family: "norwester";
+	font-size: 2rem;
+	padding-top: -80px;
+	position: relative;
+	top: -20px;
+  }
+  
+.top-page {
+	font-family: "norwester";
+	font-size: 2rem;
+	padding-top: -80px;
+	position: relative;
+	top: -20px;
+  }
   
